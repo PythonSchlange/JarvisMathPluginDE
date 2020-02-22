@@ -45,7 +45,7 @@ test_val_mathb=`echo "$b" | sed -e "s/\.//g" |  sed -e "s/,//g" | egrep -o '[[:d
 test_val_mathc=`echo "$c" | sed -e "s/\.//g" | sed -e "s/,//g" | egrep -o '[[:digit:]]*'`
 # echo "test_val_mathb=$test_val_mathb et test_val_mathc=$test_val_mathc"
 if [ "$test_val_mathb" = "" ] || [ "$test_val_mathc" = "" ]; then
-say "Hoppla, ich konnte nicht übersetzen..."
+say "Hoppla, ich konnte nicht berechnen..."
 return
 fi
 
@@ -58,7 +58,7 @@ fi
 
 # résultat calcul:
 if [[ $e =~ "+" ]] ; then
-resultatmath="$b plus $c est égale à"
+resultatmath="$b plus $c ist"
 resultatmath1=`echo "$b + $c" | sed -e "s/,/./g" | bc -l | sed "s/\([0-9]*\.[0-9][0-9]\).*/\1/"`
 resultatmathok=`echo "$resultatmath $resultatmath1" | sed -e "s/\./,/g"`
 f="ok"
@@ -66,7 +66,7 @@ say "$resultatmathok"
 fi
 
 if [[ $e =~ "-" ]] ; then
-resultatmath="$b moins $c est égale à"
+resultatmath="$b minus $c ist"
 resultatmath1=`echo "$b - $c" | sed -e "s/,/./g" | bc -l | sed "s/\([0-9]*\.[0-9][0-9]\).*/\1/"`
 resultatmathok=`echo "$resultatmath $resultatmath1" | sed -e "s/\./,/g"`
 f="ok"
@@ -74,7 +74,7 @@ say "$resultatmathok"
 fi
 
 if [[ $e =~ "*" ]] ; then
-resultatmath="$b $e1 par $c est égale à"
+resultatmath="$b $e1 durch $c ist"
 resultatmath1=`echo "$b * $c" | sed -e "s/,/./g" | bc -l | sed "s/\([0-9]*\.[0-9][0-9]\).*/\1/"`
 resultatmathok=`echo "$resultatmath $resultatmath1" | sed -e "s/\./,/g"`
 f="ok"
@@ -82,7 +82,7 @@ say "$resultatmathok"
 fi
 
 if [[ $e =~ "/" ]] ; then
-resultatmath="$b $d par $c est égale à"
+resultatmath="$b $d durch $c ist"
 verifi=$(echo "$b / $c" | sed -e "s/,/./g" | bc -l | sed "s/\([0-9]*\.[0-9][0-9]\).*/\1/")
 verifi1=$(echo `expr substr $verifi 1 1`)
 
